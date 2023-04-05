@@ -26,12 +26,13 @@ const eqObjects = function(object1, object2) {
 };
 
 const assertObjectsEqual = function(actual, expected) {
+  const inspect = require('util').inspect;
   if (eqObjects(actual, expected)) {
-    return console.log(`\u{1F4B9}\u{1F4B9}\u{1F4B9} Assertation Passed, objects are equal.`);
+    return console.log(`\u{1F4B9}\u{1F4B9}\u{1F4B9} Assertation Passed: ${inspect(actual)} === ${inspect(expected)}`);
   }
-  return console.log(`\u274C\u274C\u274C Assertation Failed: objects are not equal.`);
+  return console.log(`\u274C\u274C\u274C Assertation Failed: ${inspect(actual)} !== ${inspect(expected)}`);
 };
 
 const shirtObject = {color: 'red', size: 'medium'};
-const anotherShirtObject = {size: 'medium', color: 'blue'};
+const anotherShirtObject = {size: 'medium', color: 'red'};
 assertObjectsEqual(shirtObject,anotherShirtObject);
