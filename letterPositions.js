@@ -16,7 +16,17 @@ const eqArrays = function(arrayA, arrayB) {
 
 const letterPositions = function(sentence) {
   const results = {};
-
+  console.log(sentence);
+  for (let character = 0; character < sentence.length; character++) {
+    if (sentence[character] !== " ") {
+      if (results[character]) {
+        results[sentence[character]].push(character);
+      } else {
+        results[sentence[character]] = [character];
+        console.log(results);
+      }
+    }
+  }
   return results;
 };
 
