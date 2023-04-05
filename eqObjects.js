@@ -16,7 +16,6 @@ const eqArrays = function(arrayA, arrayB) {
 
 const eqObjects = function(object1, object2) {
   if (Object.keys(object1).length !== Object.keys(object2).length) {
-    console.log("objects have different number of keys");
     return false;
   }
   for (let keyObj1 in object1) {
@@ -24,15 +23,12 @@ const eqObjects = function(object1, object2) {
     let value2 = object2[keyObj1];
     if (Array.isArray(value1) && Array.isArray(value2)) {
       if (!eqArrays(value1, value2)) {
-        console.log(`array of object values at key ${keyObj1} are different`);
         return false;
       }
     } else if (value1 !== value2) {
-      console.log(`object values at key ${keyObj1} are different`);
       return false;
     }
   }
-  console.log('objects are the same');
   return true;
 };
 
