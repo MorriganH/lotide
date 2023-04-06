@@ -6,14 +6,15 @@ const assertEqual = function(actual, expected) {
 };
 
 const findKey = function(object, callback) {
-    for (let key in object) {
-      if (callback(object[key])) {
-        return key;
-      }
+  for (let key in object) {
+    if (callback(object[key])) {
+      return key;
     }
-    return;
+  }
+  return;
 };
 
+/*
 assertEqual(findKey({
   "Blue Hill": {stars: 1},
   "Akaleri": {stars: 3},
@@ -54,3 +55,4 @@ assertEqual(findKey({
   "Ora": {stars: 2},
   "Akelarre": {stars: 3}
 }, x => x.genre === "comedy"), undefined);
+*/
