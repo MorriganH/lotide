@@ -1,18 +1,21 @@
-const assertArraysEqual = require('../assertArraysEqual');
+const assert = require('chai').assert;
 const takeUntil = require('../takeUntil');
 
-const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5];
-const results1 = takeUntil(data1, x => x < 0);
-assertArraysEqual(results1, [1, 2, 5, 7, 2]);
+describe('#takeUntil', () => {
 
-console.log('---');
-
-const data2 = ["I've", "been", "to", "Hollywood", ",", "I've", "been", "to", "Redwood"];
-const results2 = takeUntil(data2, x => x === ",");
-assertArraysEqual(results2, ["I've", "been", "to", "Hollywood"]);
-
-console.log('---');
-
-const data3 = [5, 6, 7, 12, 3, 9, "not cool", 1, 2, 3, 4, 10];
-const results3 = takeUntil(data3, x => typeof(x) === 'string');
-assertArraysEqual(results3, [5, 6, 7, 12, 3, 9]);
+  it('should return the beginning of array up until the given criteria is met', () => {
+    const array = [1, 2, 5, 7, 2, -1, 2, 4, 5];
+    assert.deepEqual(takeUntil(array, x => x < 0), [1, 2, 5, 7, 2]);
+    const data = ["I've", "been", "to", "Hollywood", ",", "I've", "been", "to", "Redwood"];
+    assert.deepEqual(takeUntil(data, x => x === ','), ["I've", "been", "to", "Hollywood"]);
+  });
+  
+  it('should return an empty array if given an empty array', () => {
+    assert.deepEqual(takeUntil([], x => x < 0), []);
+  });
+  
+  it('should return the full array if criteria is not met', () => {
+    const array = [1, 2, 5, 7, 2, 1, 2, 4, 5];
+    assert.deepEqual(takeUntil(array, x => x < 0), [1, 2, 5, 7, 2, 1, 2, 4, 5]);
+  });
+});

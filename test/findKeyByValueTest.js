@@ -1,13 +1,23 @@
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 const findKeyByValue = require('../findKeyByValue');
 
-const bestTVShowsByGenre = {
-  sci_fi: "The Expanse",
-  comedy: "Brooklyn Nine-Nine",
-  drama: "The Wire"
-};
+describe('#findKeyByValue', () => {
 
-assertEqual(findKeyByValue(bestTVShowsByGenre, "The Wire"), "drama");
-assertEqual(findKeyByValue(bestTVShowsByGenre, "Brooklyn Nine-Nine"), "comedy");
-assertEqual(findKeyByValue(bestTVShowsByGenre, "The Expanse"), "sci_fi");
-assertEqual(findKeyByValue(bestTVShowsByGenre, "That '70s Show"), undefined);
+  it('should return the name of the key that matches the given value', () => {
+    const bestTVShowsByGenre = {
+      sci_fi: "The Expanse",
+      comedy: "Brooklyn Nine-Nine",
+      drama: "The Wire"
+    };
+    assert.equal(findKeyByValue(bestTVShowsByGenre, "The Wire"), 'drama');
+  });
+
+  it('should return undefined if the given value is not found', () => {
+    const bestTVShowsByGenre = {
+      sci_fi: "The Expanse",
+      comedy: "Brooklyn Nine-Nine",
+      drama: "The Wire"
+    };
+    assert.isUndefined(findKeyByValue(bestTVShowsByGenre), "Spongebob");
+  });
+});

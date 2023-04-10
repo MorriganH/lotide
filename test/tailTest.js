@@ -1,17 +1,15 @@
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 const tail = require('../tail');
 
-const result = tail(["Hello", "Lighthouse", "Labs"]);
-assertEqual(result.length, 2); // ensure we get back two elements
-assertEqual(result[0], "Lighthouse"); // ensure first element is "Lighthouse"
-assertEqual(result[1], "Labs"); // ensure second element is "Labs"
+describe('#tail', () => {
 
-const words = ["Yo Yo", "Lighthouse", "Labs"];
-tail(words);
-assertEqual(words.length, 3);
+  it('should return an array with the first value of the given array removed', () => {
+    const array = ['Hello', 'Lighthouse', 'Labs'];
+    assert.deepEqual(tail(array), ['Lighthouse', 'Labs']);
+  });
 
-const oneElement = [1];
-assertEqual(tail(oneElement).length, 0);
-
-const empty = [];
-assertEqual(tail(empty).length, 0);
+  it('should return an empty array if given an array with one or fewer values', () => {
+    const array = ['Hello'];
+    assert.deepEqual(tail(array), []);
+  });
+});

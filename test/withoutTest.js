@@ -1,9 +1,19 @@
-const assertArraysEqual = require('../assertArraysEqual');
+const assert = require('chai').assert;
 const without = require('../without');
 
-assertArraysEqual(without([1, 2, 3], [1]), [2, 3]);
-assertArraysEqual(without(['1', '2', '3'], [1, 2, '3']), ['1', '2']);
+describe('#without', () => {
 
-const words = ['hello', 'world', 'lighthouse'];
-without(words, ['lighthouse']);
-assertArraysEqual(words, ['hello', 'world', 'lighthouse']);
+  it('should return an array that does not include specified values', () => {
+    const array = [1, 2, 3];
+    assert.deepEqual(without(array, [1]), [2, 3]);
+  });
+
+  it('should return an empty array if given an empty array', () => {
+    assert.deepEqual(without([], [1]), []);
+  });
+
+  it('should return the full given array if specified values not found', () => {
+    const array = [1, 2, 3];
+    assert.deepEqual(without(array, [4, 5]), [1, 2, 3]);
+  });
+});

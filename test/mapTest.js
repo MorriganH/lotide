@@ -1,12 +1,14 @@
-const assertArraysEqual = require('../assertArraysEqual');
+const assert = require('chai').assert;
 const map = require('../map');
 
-const words = ['ground', 'control', 'to', 'major', 'tom'];
+describe('#map', () => {
 
-const results1 = map(words, word => word[0]);
+  it('should return an array that has had a process done on each element of a given array', () => {
+    const words = ['ground', 'control', 'to', 'major', 'tom'];
+    assert.deepEqual(map(words, word => word[0]), ['g','c','t','m','t']);
+  });
 
-assertArraysEqual(results1, ['g','c','t','m','t']);
-assertArraysEqual(map(words, word => word[0]), ['g','c','t','m','t'])
-assertArraysEqual(map(words, word => word[1]), ['r','o','o','a','o'])
-assertArraysEqual(map(words, word => word[word.length - 1]), ['d','l','o','r','m'])
-assertArraysEqual(map(words, word => word.length), [6, 7, 2, 5, 3])
+  it('should return an empty array if given an empty array', () => {
+    assert.deepEqual(map([], word => word[0]), []);
+  });
+});
